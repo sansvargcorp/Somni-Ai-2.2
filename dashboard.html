@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Somni AI — Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Core -->
+  <script src="js/db.js"></script>
+  <script src="js/session.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Somni AI</h1>
+      <button class="logout" onclick="handleLogout()">Log out</button>
+    </header>
+
+    <!-- User Info -->
+    <section class="card">
+      <h2 id="welcome"></h2>
+      <p id="plan"></p>
+    </section>
+
+    <!-- Features -->
+    <section class="grid">
+
+      <div class="card feature" id="sleepCard">
+        <h3>Sleep Log</h3>
+        <p>Track sleep & debt</p>
+        <button onclick="goFeature('features/sleep.html', 'sleep_log')">Open</button>
+      </div>
+
+      <div class="card feature" id="feelingCard">
+        <h3>Feeling AI</h3>
+        <p>Talk to your sleep coach</p>
+        <button onclick="goFeature('features/feeling.html', 'feeling_ai')">Open</button>
+      </div>
+
+      <div class="card feature" id="habitsCard">
+        <h3>Habits</h3>
+        <p>Build night routines</p>
+        <button onclick="goFeature('features/habits.html', 'habits')">Open</button>
+      </div>
+
+      <div class="card feature" id="analyticsCard">
+        <h3>Analytics</h3>
+        <p>Weekly insights</p>
+        <button onclick="goFeature('features/analytics.html', 'analytics')">Open</button>
+      </div>
+
+    </section>
+
+    <!-- Upgrade -->
+    <section class="card upgrade">
+      <h3>Upgrade</h3>
+      <div class="plans">
+        <a href="checkout/core.html">Core</a>
+        <a href="checkout/pro.html">Pro</a>
+        <a href="checkout/elite.html">Elite</a>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+
+    const user = getCurrentUser();
+
+    document.getElementById("welcome").innerText =
+      "Welcome, " + user.username;
+
+    const lastPurchase = user.purchases[user.purchases.length - 1];
+    document.getElementById("plan").innerText =
+      lastPurchase ? "Plan: " + lastPurchase.plan.toUpperCase() : "Free user";
+
+    function goFeature(path, feature) {
+      if (!user.features[feature]) {
+        window.location.href = "checkout/core.html";
+        return;
+      }
+      window.location.href = path;
+    }
+  </script>
+</body>
+</html>
