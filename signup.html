@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Somni AI — Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Core -->
+  <script src="js/db.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/auth.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0b0d;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .box {
+      width: 360px;
+      padding: 32px;
+      background: #141417;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 14px;
+      border-radius: 10px;
+      border: none;
+      background: #1e1e23;
+      color: white;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      background: #6d7cff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .error {
+      color: #ff6b6b;
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .link {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #6d7cff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h1>Create Account</h1>
+
+    <div id="signup-error" class="error"></div>
+
+    <input id="signup-username" type="text" placeholder="Username">
+    <input id="signup-password" type="password" placeholder="Password">
+
+    <button id="signup-btn">Sign Up</button>
+
+    <div class="link">
+      Already have an account?
+      <a href="login.html">Log in</a>
+    </div>
+  </div>
+</body>
+</html>
