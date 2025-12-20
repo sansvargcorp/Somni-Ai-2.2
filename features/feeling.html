@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feeling — Somni AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card">
+      <h1>How are you feeling?</h1>
+      <textarea id="feeling" rows="4"
+        placeholder="Tired, wired, anxious, motivated, unfocused…"></textarea>
+
+      <button onclick="analyze()">Analyze</button>
+    </div>
+
+    <div class="card">
+      <h2>Coach Response</h2>
+      <p id="response">—</p>
+    </div>
+
+    <a href="../dashboard.html">← Back</a>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+
+    function analyze() {
+      const text = document.getElementById("feeling").value.toLowerCase();
+      let response = "Protect your sleep tonight.";
+
+      if (text.includes("tired")) {
+        response = "You’re carrying sleep debt. Tonight is recovery, not productivity.";
+      } else if (text.includes("anxious")) {
+        response = "Your nervous system is overloaded. Screens off early.";
+      } else if (text.includes("motivated")) {
+        response = "Good. Don’t waste it by sleeping late.";
+      }
+
+      document.getElementById("response").innerText = response;
+    }
+  </script>
+</body>
+</html>
