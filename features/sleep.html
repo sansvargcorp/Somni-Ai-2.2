@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sleep Log — Somni AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card">
+      <h1>Sleep Log</h1>
+      <p>Log last night’s sleep</p>
+
+      <input id="hours" type="number" step="0.1" placeholder="Hours slept">
+      <button onclick="logSleep()">Save</button>
+    </div>
+
+    <div class="card">
+      <h2>Sleep Debt</h2>
+      <p id="debt">—</p>
+    </div>
+
+    <a href="../dashboard.html">← Back</a>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+    const user = getCurrentUser();
+
+    function logSleep() {
+      const hours = parseFloat(document.getElementById("hours").value);
+      if (!hours) return;
+
+      const target = 8;
+      const debtChange = target - hours;
+
+      user.sleepDebt = (user.sleepDebt || 0) + debtChange;
+      user.sleepLogs = user.sleepLogs || [];
+      user.sleepLogs.push({ date: Date.now(), hours });
+
+      saveUser(user);
+      renderDebt();
+    }
+
+    function renderDebt() {
+      const debt = user.sleepDebt || 0;
+      document.getElementById("debt").innerText =
+        debt > 0 ? debt.toFixed(1) + "h debt" : "No debt 🎯";
+    }
+
+    renderDebt();
+  </script>
+</body>
+</html>
