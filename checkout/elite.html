@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Somni AI — Elite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAkG-FXxYga_FNSogVneiRPidsy1Xyx_5-isM0kwA7ygPTSXyYH3HxxQ9H0RcW_JLdAV25pUyDiR0F4Bw&components=hosted-buttons&currency=USD"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+
+  <style>
+    .checkout {
+      max-width: 420px;
+      margin: 80px auto;
+      text-align: center;
+    }
+    .price {
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .strike {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="checkout card">
+    <h1>Elite</h1>
+    <p>AI sleep coach. No compromises.</p>
+
+    <div class="strike">$149.99</div>
+    <div class="price">$99.99</div>
+
+    <ul style="text-align:left">
+      <li>Everything in Pro</li>
+      <li>24/7 AI coach</li>
+      <li>Exact sleep timing</li>
+      <li>Discipline enforcement mode</li>
+    </ul>
+
+    <div id="paypal-container-MNTEEM7ZNE4NJ"></div>
+
+    <input id="promo" placeholder="Promo code">
+    <div class="unlock" onclick="applyPromo()">Continue</div>
+  </div>
+
+  <script>
+    paypal.HostedButtons({
+      hostedButtonId: "MNTEEM7ZNE4NJ"
+    }).render("#paypal-container-MNTEEM7ZNE4NJ");
+
+    function applyPromo() {
+      if (document.getElementById("promo").value === "TEST123") {
+        unlockPlan("elite");
+        window.location.href = "../success/elite.html";
+      }
+    }
+  </script>
+</body>
+</html>
