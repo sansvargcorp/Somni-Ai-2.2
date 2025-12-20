@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome — Somni AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/db.js"></script>
+  <script src="js/session.js"></script>
+
+  <style>
+    .center {
+      max-width: 520px;
+      margin: 120px auto;
+      text-align: center;
+    }
+
+    .step {
+      margin: 24px 0;
+      opacity: 0.9;
+    }
+
+    .cta {
+      margin-top: 40px;
+      padding: 16px;
+      background: #6d7cff;
+      color: white;
+      border-radius: 14px;
+      text-decoration: none;
+      display: block;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="center card">
+    <h1>Welcome to Somni AI</h1>
+
+    <p>
+      This isn’t a sleep tracker.
+      It’s a discipline system.
+    </p>
+
+    <div class="step">• Log your sleep every morning</div>
+    <div class="step">• Follow your night routine</div>
+    <div class="step">• Reduce sleep debt over time</div>
+
+    <p style="margin-top:20px;opacity:0.7">
+      Consistency beats intensity.
+    </p>
+
+    <a class="cta" href="features/sleep.html" onclick="markSeen()">
+      Log your first night
+    </a>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+
+    function markSeen() {
+      const user = getCurrentUser();
+      user.onboarded = true;
+      saveUser(user);
+    }
+  </script>
+</body>
+</html>
