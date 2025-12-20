@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analytics — Somni AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card">
+      <h1>Weekly Insights</h1>
+      <p id="summary">—</p>
+    </div>
+
+    <div class="card">
+      <h2>Coach Insight</h2>
+      <p id="coach"></p>
+    </div>
+
+    <a href="../dashboard.html">← Back</a>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+    const user = getCurrentUser();
+    const logs = user.sleepLogs || [];
+
+    if (logs.length < 3) {
+      document.getElementById("summary").innerText =
+        "Not enough data yet. Log more nights.";
+      document.getElementById("coach").innerText =
+        "Discipline starts with data.";
+    } else {
+      const avg = logs.reduce((a,b)=>a+b.hours,0)/logs.length;
+      document.getElementById("summary").innerText =
+        "Average sleep: " + avg.toFixed(1) + "h";
+
+      document.getElementById("coach").innerText =
+        avg < 7 ? "You’re under-recovering." : "Recovery is on track.";
+    }
+  </script>
+</body>
+</html>
