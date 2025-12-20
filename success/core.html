@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Successful — Core</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card" style="text-align:center;margin-top:120px">
+      <h1>You're in.</h1>
+      <p>Core plan unlocked.</p>
+      <p>Redirecting to dashboard…</p>
+    </div>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+
+    unlockPlan("core");
+
+    setTimeout(() => {
+      window.location.href = "../dashboard.html";
+    }, 2500);
+  </script>
+</body>
+</html>
