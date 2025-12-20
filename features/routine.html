@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Routine — Somni AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card">
+      <h1>Night Routine</h1>
+      <p>Your non-negotiable wind-down</p>
+
+      <textarea id="routine" rows="6"
+        placeholder="Example:
+• No screens after 9:30
+• Stretch 10 min
+• In bed by 10:15"></textarea>
+
+      <button onclick="saveRoutine()">Save Routine</button>
+    </div>
+
+    <div class="card">
+      <h2>Coach Note</h2>
+      <p>
+        Consistency beats motivation.  
+        Protect your sleep like training.
+      </p>
+    </div>
+
+    <a href="../dashboard.html">← Back</a>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+    const user = getCurrentUser();
+
+    function saveRoutine() {
+      user.routine = document.getElementById("routine").value;
+      saveUser(user);
+      alert("Routine locked in.");
+    }
+
+    if (user.routine) {
+      document.getElementById("routine").value = user.routine;
+    }
+  </script>
+</body>
+</html>
