@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile — Somni AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/db.js"></script>
+  <script src="js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card">
+      <h1>Profile</h1>
+      <p id="user"></p>
+      <p id="plan"></p>
+    </div>
+
+    <a href="dashboard.html">← Back</a>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+    const user = getCurrentUser();
+
+    document.getElementById("user").innerText =
+      "Username: " + user.username;
+
+    const last = user.purchases[user.purchases.length - 1];
+    document.getElementById("plan").innerText =
+      last ? "Plan: " + last.plan.toUpperCase() : "Free user";
+  </script>
+</body>
+</html>
