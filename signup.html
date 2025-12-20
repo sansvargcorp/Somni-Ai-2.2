@@ -90,12 +90,18 @@
 
     <input id="signup-username" type="text" placeholder="Username">
     <input id="signup-password" type="password" placeholder="Password">
-
     <button id="signup-btn">Sign Up</button>
-
-    <div class="link">
+ <div class="link">
       Already have an account?
-      <a href="login.html">Log in</a>
+    
+  function redirectIfNotLoggedIn() {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "login.html";
+  }
+}
+   
+   <a href="login.html">Log in</a>
     </div>
   </div>
 </body>
