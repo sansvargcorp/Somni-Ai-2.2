@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Successful — Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/db.js"></script>
+  <script src="../js/session.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="card" style="text-align:center;margin-top:120px">
+      <h1>Upgrade complete.</h1>
+      <p>Pro features unlocked.</p>
+      <p>Sleep optimization activated.</p>
+    </div>
+  </div>
+
+  <script>
+    redirectIfNotLoggedIn();
+
+    unlockPlan("pro");
+
+    setTimeout(() => {
+      window.location.href = "../dashboard.html";
+    }, 2500);
+  </script>
+</body>
+</html>
